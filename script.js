@@ -130,6 +130,8 @@ function initializeCharts() {
     const pieChartElement = document.querySelector('.chart-pie');
     const scatterChartElement = document.querySelector('.chart-scatter');
     
+    const isMobile = window.innerWidth < 768;
+    
     const chartOptions = {
         responsive: true,
         maintainAspectRatio: false,
@@ -144,8 +146,9 @@ function initializeCharts() {
                 ticks: {
                     color: '#fff',
                     font: {
-                        size: window.innerWidth < 768 ? 10 : 12
-                    }
+                        size: isMobile ? 8 : 12
+                    },
+                    padding: isMobile ? 5 : 10
                 },
                 grid: {
                     color: 'rgba(255, 255, 255, 0.1)'
@@ -155,8 +158,9 @@ function initializeCharts() {
                 ticks: {
                     color: '#fff',
                     font: {
-                        size: window.innerWidth < 768 ? 10 : 12
-                    }
+                        size: isMobile ? 8 : 12
+                    },
+                    padding: isMobile ? 5 : 10
                 },
                 grid: {
                     color: 'rgba(255, 255, 255, 0.1)'
@@ -165,11 +169,13 @@ function initializeCharts() {
         },
         plugins: {
             legend: {
+                position: isMobile ? 'bottom' : 'top',
                 labels: {
                     color: '#fff',
                     font: {
-                        size: window.innerWidth < 768 ? 10 : 12
-                    }
+                        size: isMobile ? 8 : 12
+                    },
+                    padding: isMobile ? 10 : 20
                 }
             }
         }
@@ -200,14 +206,15 @@ function initializeCharts() {
                         'rgba(150, 88, 208, 1)',
                         'rgba(200, 88, 208, 1)'
                     ],
-                    borderWidth: 1
+                    borderWidth: 1,
+                    barThickness: isMobile ? 20 : 30
                 }]
             },
             options: chartOptions
         });
     }
     
-    // Second chart (Line Chart) - 2 seconds delay
+    // Second chart (Line Chart)
     setTimeout(() => {
         if (lineChartElement && !lineChartElement.hasAttribute('data-chart-initialized')) {
             const lineCtx = document.createElement('canvas');
@@ -224,7 +231,8 @@ function initializeCharts() {
                         fill: false,
                         borderColor: 'rgba(0, 147, 233, 1)',
                         tension: 0.1,
-                        backgroundColor: 'rgba(0, 147, 233, 0.7)'
+                        backgroundColor: 'rgba(0, 147, 233, 0.7)',
+                        pointRadius: isMobile ? 3 : 5
                     }]
                 },
                 options: chartOptions
@@ -232,7 +240,7 @@ function initializeCharts() {
         }
     }, 2000);
     
-    // Third chart (Pie Chart) - 1 second after second chart
+    // Third chart (Pie Chart)
     setTimeout(() => {
         if (pieChartElement && !pieChartElement.hasAttribute('data-chart-initialized')) {
             const pieCtx = document.createElement('canvas');
@@ -267,12 +275,13 @@ function initializeCharts() {
                     maintainAspectRatio: false,
                     plugins: {
                         legend: {
-                            position: 'right',
+                            position: isMobile ? 'bottom' : 'right',
                             labels: {
                                 color: '#fff',
                                 font: {
-                                    size: 10
-                                }
+                                    size: isMobile ? 8 : 10
+                                },
+                                padding: isMobile ? 5 : 10
                             }
                         }
                     }
@@ -281,7 +290,7 @@ function initializeCharts() {
         }
     }, 3000);
     
-    // Fourth chart (Scatter Chart) - 1 second after third chart
+    // Fourth chart (Scatter Chart)
     setTimeout(() => {
         if (scatterChartElement && !scatterChartElement.hasAttribute('data-chart-initialized')) {
             const scatterCtx = document.createElement('canvas');
@@ -306,7 +315,8 @@ function initializeCharts() {
                         ],
                         backgroundColor: 'rgba(251, 171, 126, 0.7)',
                         borderColor: 'rgba(251, 171, 126, 1)',
-                        borderWidth: 1
+                        borderWidth: 1,
+                        pointRadius: isMobile ? 3 : 5
                     }]
                 },
                 options: {
@@ -318,10 +328,16 @@ function initializeCharts() {
                             title: {
                                 display: true,
                                 text: 'Complexity',
-                                color: '#fff'
+                                color: '#fff',
+                                font: {
+                                    size: isMobile ? 8 : 12
+                                }
                             },
                             ticks: {
-                                color: '#fff'
+                                color: '#fff',
+                                font: {
+                                    size: isMobile ? 8 : 12
+                                }
                             },
                             grid: {
                                 color: 'rgba(255, 255, 255, 0.1)'
@@ -332,10 +348,16 @@ function initializeCharts() {
                             title: {
                                 display: true,
                                 text: 'Time (hours)',
-                                color: '#fff'
+                                color: '#fff',
+                                font: {
+                                    size: isMobile ? 8 : 12
+                                }
                             },
                             ticks: {
-                                color: '#fff'
+                                color: '#fff',
+                                font: {
+                                    size: isMobile ? 8 : 12
+                                }
                             },
                             grid: {
                                 color: 'rgba(255, 255, 255, 0.1)'
@@ -344,8 +366,12 @@ function initializeCharts() {
                     },
                     plugins: {
                         legend: {
+                            position: isMobile ? 'bottom' : 'top',
                             labels: {
-                                color: '#fff'
+                                color: '#fff',
+                                font: {
+                                    size: isMobile ? 8 : 12
+                                }
                             }
                         }
                     }

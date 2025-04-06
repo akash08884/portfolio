@@ -525,31 +525,8 @@ footer {
         padding: 4px;
         min-height: 250px;
         max-height: 350px;
-        line-height: 0.8;
-        margin: -20px 0 0 0;
-    }
-
-    .python-code-line {
-        padding: 0;
-        margin: 0;
-    }
-
-    .python-code-container::after {
-        width: 6px;
-        height: 12px;
-        right: 10px;
-        bottom: 10px;
-    }
-}
-
-@media (max-width: 480px) {
-    .python-code-container {
-        font-size: 8px;
-        padding: 3px;
-        min-height: 200px;
-        max-height: 300px;
         line-height: 0.7;
-        margin: -15px 0 0 0;
+        margin: -20px 0 0 0;
     }
 
     .python-code-line {
@@ -562,6 +539,29 @@ footer {
         height: 10px;
         right: 8px;
         bottom: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .python-code-container {
+        font-size: 8px;
+        padding: 3px;
+        min-height: 200px;
+        max-height: 300px;
+        line-height: 0.6;
+        margin: -15px 0 0 0;
+    }
+
+    .python-code-line {
+        padding: 0;
+        margin: 0;
+    }
+
+    .python-code-container::after {
+        width: 3px;
+        height: 8px;
+        right: 6px;
+        bottom: 6px;
     }
 }
 
