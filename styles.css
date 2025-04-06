@@ -407,7 +407,7 @@ footer {
 .skills-visualization-container {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 25px;
     padding: 20px;
     background-color: var(--card-bg);
     border-radius: 10px;
@@ -544,24 +544,31 @@ footer {
 
 @media (max-width: 480px) {
     .python-code-container {
-        font-size: 8px;
+        font-size: 7px;
         padding: 3px;
-        min-height: 200px;
-        max-height: 300px;
-        line-height: 0.6;
-        margin: -15px 0 0 0;
+        min-height: 150px;
+        max-height: 200px;
+        line-height: 1.2;
+        margin: 0;
+        width: 100%;
+        overflow-x: auto;
     }
 
     .python-code-line {
         padding: 0;
         margin: 0;
+        white-space: pre;
+        width: auto !important;
+        animation: none;
+        display: block;
     }
 
     .python-code-container::after {
-        width: 3px;
-        height: 8px;
-        right: 6px;
-        bottom: 6px;
+        display: none;
+    }
+    
+    .python-keyword, .python-string, .python-comment {
+        display: inline-block;
     }
 }
 
@@ -573,6 +580,7 @@ footer {
     overflow: hidden;
     position: relative;
     border: 1px solid rgba(138, 43, 226, 0.3);
+    margin-top: -10px;
     margin-bottom: 20px;
 }
 
@@ -839,8 +847,16 @@ html {
         cursor: pointer;
     }
     
+    /* Improve chart section for mobile */
+    .chart {
+        border-radius: 10px;
+        min-height: 70px;
+    }
+    
     .about-image, .timeline-image {
-        max-height: 200px;
+        max-height: 600px;
+        width: 100%;
+        margin-top: 20px;
     }
     
     .map-container {
@@ -848,37 +864,78 @@ html {
         margin-top: 20px;
     }
     
-    .visualization-result {
-        height: 250px;
-        max-height: 250px;
-        padding: 10px;
-        width: 1000%;
-        overflow: auto;
+    /* Improve timeline layout for mobile */
+    #skills .timeline {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    #skills .timeline > div:first-child {
+        order: 2;
+    }
+    
+    #skills .timeline > div.timeline-image {
+        order: 1;
         margin-bottom: 15px;
-        border: 1px solid rgba(138, 43, 226, 0.3);
+    }
+    
+    .visualization-result {
+        margin-top: -10px;
+        min-height: 70px;
+        padding: 1px;
     }
     
     .dashboard-preview {
-        height: 230px;
+        height: 100%;
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr;
-        gap: 5px;
+        gap: 10px;
         background-color: rgba(0, 0, 0, 0.3);
     }
     
     .chart {
-        min-height: 100px;
+        min-height: 80px;
         border: 1px solid rgba(138, 43, 226, 0.1);
     }
     
+    /* Optimize timeline for mobile */
     .timeline {
         display: flex;
         flex-direction: column;
+        gap: 20px;
     }
     
     .timeline > div {
         width: 100%;
+    }
+    
+    .timeline-item {
+        margin-bottom: 15px;
+        padding: 10px;
+    }
+    
+    .timeline-year {
+        font-size: 0.9rem;
+        padding: 5px 10px;
+    }
+    
+    .timeline-content p {
+        font-size: 0.85rem;
+        line-height: 1.4;
+    }
+    
+    .skills-visualization-container {
+        padding: 10px;
+        gap: 10px;
+        margin: 0;
+        width: 100%;
+    }
+    
+    /* Better spacing between visualization and code container */
+    .skills-visualization-container .visualization-result {
+        margin-bottom: 10px;
     }
     
     /* Project Modal Mobile Styles */
