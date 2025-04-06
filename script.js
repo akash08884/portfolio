@@ -15,7 +15,6 @@ function revealOnScroll() {
             // Reset Python code animation when skills section comes into view
             if (section.id === 'skills' && pythonAnimation) {
                 resetPythonAnimation();
-                // Initialize charts when skills section comes into view
                 initializeCharts();
             }
         } else if (sectionTop > windowHeight) {
@@ -124,24 +123,59 @@ function highlightNavOnScroll() {
     });
 }
 
-// Function to initialize charts
+// Initialize charts with responsive settings
 function initializeCharts() {
-    // Get chart containers
     const barChartElement = document.querySelector('.chart-bar');
     const lineChartElement = document.querySelector('.chart-line');
     const pieChartElement = document.querySelector('.chart-pie');
     const scatterChartElement = document.querySelector('.chart-scatter');
     
-    // Charts will be animated through CSS animations with delays
-    // No need for setTimeout as we're using CSS animations with delays
-    // .chart-bar - shows immediately
-    // .chart-line - shows after 2s delay
-    // .chart-pie - shows after 4s delay
-    // .chart-scatter - shows after 6s delay
-    
-    // Only initialize if elements exist and don't already have charts
+    const chartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: {
+            duration: 1000,
+            easing: 'easeInOutQuart'
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                max: 100,
+                ticks: {
+                    color: '#fff',
+                    font: {
+                        size: window.innerWidth < 768 ? 10 : 12
+                    }
+                },
+                grid: {
+                    color: 'rgba(255, 255, 255, 0.1)'
+                }
+            },
+            x: {
+                ticks: {
+                    color: '#fff',
+                    font: {
+                        size: window.innerWidth < 768 ? 10 : 12
+                    }
+                },
+                grid: {
+                    color: 'rgba(255, 255, 255, 0.1)'
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                labels: {
+                    color: '#fff',
+                    font: {
+                        size: window.innerWidth < 768 ? 10 : 12
+                    }
+                }
+            }
+        }
+    };
+
     if (barChartElement && !barChartElement.hasAttribute('data-chart-initialized')) {
-        // Create bar chart
         const barCtx = document.createElement('canvas');
         barChartElement.appendChild(barCtx);
         barChartElement.setAttribute('data-chart-initialized', 'true');
@@ -170,42 +204,11 @@ function initializeCharts() {
                     borderWidth: 1
                 }]
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 100,
-                        ticks: {
-                            color: '#fff'
-                        },
-                        grid: {
-                            color: 'rgba(255, 255, 255, 0.1)'
-                        }
-                    },
-                    x: {
-                        ticks: {
-                            color: '#fff'
-                        },
-                        grid: {
-                            color: 'rgba(255, 255, 255, 0.1)'
-                        }
-                    }
-                },
-                plugins: {
-                    legend: {
-                        labels: {
-                            color: '#fff'
-                        }
-                    }
-                }
-            }
+            options: chartOptions
         });
     }
     
     if (lineChartElement && !lineChartElement.hasAttribute('data-chart-initialized')) {
-        // Create line chart
         const lineCtx = document.createElement('canvas');
         lineChartElement.appendChild(lineCtx);
         lineChartElement.setAttribute('data-chart-initialized', 'true');
@@ -223,37 +226,7 @@ function initializeCharts() {
                     backgroundColor: 'rgba(0, 147, 233, 0.7)'
                 }]
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 100,
-                        ticks: {
-                            color: '#fff'
-                        },
-                        grid: {
-                            color: 'rgba(255, 255, 255, 0.1)'
-                        }
-                    },
-                    x: {
-                        ticks: {
-                            color: '#fff'
-                        },
-                        grid: {
-                            color: 'rgba(255, 255, 255, 0.1)'
-                        }
-                    }
-                },
-                plugins: {
-                    legend: {
-                        labels: {
-                            color: '#fff'
-                        }
-                    }
-                }
-            }
+            options: chartOptions
         });
     }
     
@@ -375,6 +348,22 @@ function initializeCharts() {
         });
     }
 }
+
+// Handle window resize
+let resizeTimeout;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        const charts = document.querySelectorAll('[data-chart-initialized]');
+        charts.forEach(chart => {
+            chart.removeAttribute('data-chart-initialized');
+            while (chart.firstChild) {
+                chart.removeChild(chart.firstChild);
+            }
+        });
+        initializeCharts();
+    }, 250);
+});
 
 // Project Modal Functionality
 let currentProjectId = null;

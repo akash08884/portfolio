@@ -109,19 +109,30 @@
                         </div>
                     </div>
                     <div class="python-code-container" id="python-animation">
-                        <span class="python-code-line"><span class="python-comment"># Python Data Analysis</span></span>
+                        <span class="python-code-line"><span class="python-comment"># Data Analysis Example</span></span>
                         <span class="python-code-line"><span class="python-keyword">import</span> pandas <span class="python-keyword">as</span> pd</span>
                         <span class="python-code-line"><span class="python-keyword">import</span> numpy <span class="python-keyword">as</span> np</span>
                         <span class="python-code-line"><span class="python-keyword">import</span> matplotlib.pyplot <span class="python-keyword">as</span> plt</span>
                         <span class="python-code-line"><span class="python-keyword">import</span> seaborn <span class="python-keyword">as</span> sns</span>
+                        <span class="python-code-line"><span class="python-keyword">from</span> sklearn.model_selection <span class="python-keyword">import</span> train_test_split</span>
                         <span class="python-code-line"></span>
-                        <span class="python-code-line"><span class="python-comment"># Load sales data</span></span>
-                        <span class="python-code-line">sales_data = pd.read_csv(<span class="python-string">"sales_data.csv"</span>)</span>
+                        <span class="python-code-line"><span class="python-comment"># Load and prepare data</span></span>
+                        <span class="python-code-line">df = pd.read_csv(<span class="python-string">'sales_data.csv'</span>)</span>
+                        <span class="python-code-line">df[<span class="python-string">'date'</span>] = pd.to_datetime(df[<span class="python-string">'date'</span>])</span>
                         <span class="python-code-line"></span>
-                        <span class="python-code-line"><span class="python-comment"># Create visualization</span></span>
-                        <span class="python-code-line">plt.figure(figsize=(10, 6))</span>
-                        <span class="python-code-line">sns.barplot(x=<span class="python-string">"month"</span>, y=<span class="python-string">"revenue"</span>, data=sales_data)</span>
-                        <span class="python-code-line">plt.title(<span class="python-string">"Monthly Revenue"</span>)</span>
+                        <span class="python-code-line"><span class="python-comment"># Feature Engineering</span></span>
+                        <span class="python-code-line">df[<span class="python-string">'month'</span>] = df[<span class="python-string">'date'</span>].dt.month</span>
+                        <span class="python-code-line">df[<span class="python-string">'day_of_week'</span>] = df[<span class="python-string">'date'</span>].dt.dayofweek</span>
+                        <span class="python-code-line"></span>
+                        <span class="python-code-line"><span class="python-comment"># Data Analysis</span></span>
+                        <span class="python-code-line">monthly_sales = df.groupby(<span class="python-string">'month'</span>)[<span class="python-string">'revenue'</span>].sum()</span>
+                        <span class="python-code-line">avg_daily_sales = df.groupby(<span class="python-string">'day_of_week'</span>)[<span class="python-string">'revenue'</span>].mean()</span>
+                        <span class="python-code-line"></span>
+                        <span class="python-code-line"><span class="python-comment"># Visualization</span></span>
+                        <span class="python-code-line">plt.figure(figsize=(12, 6))</span>
+                        <span class="python-code-line">sns.barplot(data=df, x=<span class="python-string">'month'</span>, y=<span class="python-string">'revenue'</span>)</span>
+                        <span class="python-code-line">plt.title(<span class="python-string">'Monthly Revenue Analysis'</span>)</span>
+                        <span class="python-code-line">plt.show()</span>
                     </div>
                 </div>
             </div>

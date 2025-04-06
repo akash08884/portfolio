@@ -1,45 +1,56 @@
-# Akash Gaud - Data Analyst Portfolio |
+# Personal Portfolio Website
 
-This is a personal portfolio website showcasing my skills, experience, and projects as a Data Analyst.
+A modern, responsive personal portfolio website built with HTML, CSS, and JavaScript. Features include:
 
-Ye mera personal portfolio website hai jo meri skills, experience, aur projects ko as a Data Analyst showcase karta hai.
+- Responsive design for all devices
+- Interactive Python code visualization
+- Animated sections and elements
+- Modern UI with smooth transitions
+- Mobile-first approach
 
-## Features | 
+## Features
 
-- Responsive design that works on all devices | सभी डिवाइसों पर काम करने वाला रेस्पॉन्सिव डिज़ाइन
-- Interactive UI elements with animations
-- Sections for skills, education, work experience, projects, and contact information 
-- Pull-to-refresh functionality on mobile devices 
+- Clean and modern design
+- Responsive layout
+- Interactive code visualization
+- Smooth animations
+- Mobile-friendly interface
+- Dark theme with purple accents
 
-## Technologies Used | 
+## Technologies Used
 
 - HTML5
-- CSS3 (with custom animations | कस्टम एनिमेशन के साथ)
-- JavaScript (vanilla | वैनिला)
-- Font Awesome for icons | आइकॉन्स के लिए Font Awesome
-- Chart.js for data visualizations | डेटा विज़ुअलाइज़ेशन के लिए Chart.js
+- CSS3
+- JavaScript
+- Font Awesome Icons
+- Google Fonts
 
-## Deploying on GitHub Pages 
+## Setup Instructions
 
-This website can be deployed on GitHub Pages. Follow these steps:
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/portfolio-website.git
+```
 
-Is website ko GitHub Pages par deploy karne ke liye in steps ko follow karein:
+2. Open the project folder:
+```bash
+cd portfolio-website
+```
 
-1. Create a new repository on GitHub (e.g., `username.github.io` or any other name)
-2. Connect your local project to this repository and push it
-3. Go to the Settings of your GitHub repository
-4. In the Pages section, select the main branch as the Source 
-5. Click on the Save button 
+3. Open `index.html` in your web browser to view the website locally.
 
-## Live Website | 
+## Deployment
 
-You can view the live website at
-[https://akash08884.github.io/portfolio/](https://akash08884.github.io/portfolio/)
+The website can be deployed to:
+- GitHub Pages
+- Netlify
+- Vercel
+- Any static site hosting service
 
+## Contributing
 
-## Contact 
+Feel free to fork this repository and make your own modifications. Pull requests are welcome!
 
-For any inquiries, please reach out to me at:
-- Email: akashgaud0x0@gmail.com
-- LinkedIn: [linkedin.com/in/AkashGaud0x0](https://linkedin.com/in/AkashGaud0x0)
-- GitHub: [github.com/akash08884](https://github.com/akash08884)
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
