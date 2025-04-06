@@ -376,6 +376,85 @@ function initializeCharts() {
     }
 }
 
+// Project Modal Functionality
+let currentProjectId = null;
+
+// Function to show project details
+function showProjectDetails(projectId) {
+    const project = getProjectById(projectId);
+    if (!project) return;
+    
+    currentProjectId = projectId;
+    
+    // Update modal content
+    document.getElementById('project-modal-title').textContent = project.title;
+    document.getElementById('project-modal-description').textContent = project.description;
+    document.getElementById('project-modal-image').src = project.image;
+    document.getElementById('project-modal-image').alt = project.title;
+    
+    // Update technologies
+    const techList = document.getElementById('project-modal-technologies');
+    techList.innerHTML = '';
+    project.technologies.forEach(tech => {
+        const techItem = document.createElement('span');
+        techItem.className = 'tech-tag';
+        techItem.textContent = tech;
+        techList.appendChild(techItem);
+    });
+    
+    // Update features
+    const featuresList = document.getElementById('project-modal-features');
+    featuresList.innerHTML = '';
+    project.features.forEach(feature => {
+        const li = document.createElement('li');
+        li.textContent = feature;
+        featuresList.appendChild(li);
+    });
+    
+    // Update challenges and outcomes
+    document.getElementById('project-modal-challenges').textContent = project.challenges;
+    document.getElementById('project-modal-outcomes').textContent = project.outcomes;
+    
+    // Show modal
+    document.getElementById('project-modal').classList.add('active');
+    document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+}
+
+// Function to close project modal
+function closeProjectModal() {
+    document.getElementById('project-modal').classList.remove('active');
+    document.body.style.overflow = ''; // Re-enable scrolling
+    currentProjectId = null;
+}
+
+// Add event listeners to portfolio items
+document.addEventListener('DOMContentLoaded', () => {
+    // Add click event to portfolio items
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+    portfolioItems.forEach((item, index) => {
+        const projectId = projectDetails[index]?.id || `project-${index}`;
+        item.setAttribute('data-project-id', projectId);
+        item.addEventListener('click', () => {
+            showProjectDetails(projectId);
+        });
+    });
+    
+    // Close modal when clicking close button or outside the modal content
+    document.getElementById('project-modal-close').addEventListener('click', closeProjectModal);
+    document.getElementById('project-modal').addEventListener('click', (e) => {
+        if (e.target.id === 'project-modal') {
+            closeProjectModal();
+        }
+    });
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && document.getElementById('project-modal').classList.contains('active')) {
+            closeProjectModal();
+        }
+    });
+});
+
 // Initialize functions
 revealOnScroll();
 highlightNavOnScroll();

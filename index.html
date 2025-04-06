@@ -227,8 +227,8 @@
                         <p>Hindi (Native), English (Fluent), Marathi (Fluent)</p>
                     </div>
                 </div>
-                <div class="contact-image">
-                    <img src="https://images.unsplash.com/photo-1557682250-33bd709cbe85?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" alt="Contact" loading="lazy">
+                <div class="map-container">
+                    <iframe class="google-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d241316.6433229747!2d72.74109780863925!3d19.08252232482446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c6306644edc1%3A0x5da4ed8f8d648c69!2sMumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1651234567890!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </div>
@@ -265,8 +265,40 @@
         </div>
     </footer>
     
+    <!-- Project Modal -->
+    <div id="project-modal" class="project-modal">
+        <div class="project-modal-content">
+            <span id="project-modal-close" class="project-modal-close">&times;</span>
+            <div class="project-modal-header">
+                <h2 id="project-modal-title">Project Title</h2>
+            </div>
+            <div class="project-modal-body">
+                <div class="project-modal-image-container">
+                    <img id="project-modal-image" src="" alt="Project Image">
+                </div>
+                <div class="project-modal-details">
+                    <h3>Description</h3>
+                    <p id="project-modal-description"></p>
+                    
+                    <h3>Technologies Used</h3>
+                    <div id="project-modal-technologies" class="tech-tags"></div>
+                    
+                    <h3>Key Features</h3>
+                    <ul id="project-modal-features"></ul>
+                    
+                    <h3>Challenges</h3>
+                    <p id="project-modal-challenges"></p>
+                    
+                    <h3>Outcomes</h3>
+                    <p id="project-modal-outcomes"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="project-details.js"></script>
     <script src="script.js" defer></script>
     <script src="pull-to-refresh.js" defer></script>
 </body>

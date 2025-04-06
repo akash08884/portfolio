@@ -173,7 +173,7 @@ nav {
     opacity: 0.8;
 }
 
-.about-image, .timeline-image, .contact-image {
+.about-image, .timeline-image, .map-container {
     position: relative;
     border-radius: 10px;
     overflow: hidden;
@@ -181,9 +181,21 @@ nav {
     animation: slideInRight 0.8s ease-out;
 }
 
-.about-image img, .timeline-image img, .contact-image img {
+.about-image img, .timeline-image img {
     width: 100%;
     display: block;
+}
+
+.map-container {
+    height: 100%;
+    min-height: 350px;
+}
+
+.google-map {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 10px;
 }
 
 /* Timeline Section */
@@ -380,6 +392,13 @@ footer {
     100% { transform: scale(1); }
 }
 
+.skills-visualization-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
 /* Python Coding Animation */
 @keyframes typing {
     from { width: 0 }
@@ -552,6 +571,120 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Project Modal Styles */
+.project-modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.project-modal.active {
+    display: block;
+    opacity: 1;
+}
+
+.project-modal-content {
+    background-color: var(--bg-color);
+    margin: 5% auto;
+    padding: 30px;
+    border: 1px solid var(--primary-color);
+    border-radius: 10px;
+    width: 80%;
+    max-width: 1000px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+    animation: fadeIn 0.5s ease-out;
+}
+
+.project-modal-close {
+    color: var(--text-color);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.project-modal-close:hover {
+    color: var(--primary-color);
+}
+
+.project-modal-header {
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(138, 43, 226, 0.3);
+    padding-bottom: 15px;
+}
+
+.project-modal-header h2 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin: 0;
+}
+
+.project-modal-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.project-modal-image-container {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(138, 43, 226, 0.3);
+}
+
+.project-modal-image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.project-modal-details h3 {
+    color: var(--primary-color);
+    margin: 20px 0 10px;
+    font-size: 1.3rem;
+}
+
+.project-modal-details p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+.tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.tech-tag {
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+#project-modal-features {
+    padding-left: 20px;
+    margin: 10px 0;
+}
+
+#project-modal-features li {
+    margin-bottom: 8px;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .about-content,
@@ -563,20 +696,39 @@ html {
         grid-template-columns: 1fr;
     }
     
+    .map-container {
+        margin-top: 30px;
+        min-height: 300px;
+    }
+    
     .python-code-container {
         height: 250px;
         max-height: 250px;
         margin-top: 30px;
         font-size: 10px;
+        width: 100%;
+        display: block;
+        overflow-x: auto;
+        padding: 10px;
     }
     
     .visualization-result {
-        height: 500px;
-        max-height: 500px;
+        height: 300px;
+        max-height: 300px;
+        width: 100%;
+        overflow: auto;
     }
     
     .dashboard-preview {
-        height: 500px;
+        height: 300px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 10px;
+    }
+    
+    .chart {
+        min-height: 120px;
     }
     
     .hero h1 {
@@ -624,6 +776,7 @@ html {
     
     .about-image, .timeline-image, .contact-image {
         margin-top: 30px;
+        width: 100%;
         max-height: 1000px;
         overflow: hidden;
     }
@@ -646,6 +799,7 @@ html {
     
     .portfolio-item {
         height: 250px;
+        cursor: pointer;
     }
     
     .service-card {
@@ -654,6 +808,21 @@ html {
     
     .contact-method {
         padding: 15px;
+    }
+    
+    /* Project Modal Mobile Styles */
+    .project-modal-content {
+        width: 95%;
+        padding: 20px;
+        margin: 10% auto;
+    }
+    
+    .project-modal-body {
+        grid-template-columns: 1fr;
+    }
+    
+    .project-modal-header h2 {
+        font-size: 1.8rem;
     }
 }
 
@@ -677,22 +846,77 @@ html {
     
     .portfolio-item {
         height: 200px;
+        cursor: pointer;
     }
     
-    .about-image, .timeline-image, .contact-image {
+    .about-image, .timeline-image {
         max-height: 200px;
+    }
+    
+    .map-container {
+        min-height: 250px;
+        margin-top: 20px;
     }
     
     .python-code-container {
-        height: 200px;
+        height: auto;
         max-height: 200px;
         font-size: 9px;
         padding: 10px;
+        width: 100%;
+        display: block;
+        overflow-x: auto;
+        margin-bottom: 15px;
     }
     
     .visualization-result {
-        height: 200px;
-        max-height: 200px;
+        height: 250px;
+        max-height: 250px;
         padding: 10px;
+        width: 100%;
+        overflow: auto;
+        margin-bottom: 15px;
+    }
+    
+    .dashboard-preview {
+        height: 230px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 5px;
+    }
+    
+    .chart {
+        min-height: 100px;
+    }
+    
+    .timeline {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .timeline > div {
+        width: 100%;
+    }
+    
+    /* Project Modal Mobile Styles */
+    .project-modal-content {
+        width: 95%;
+        padding: 15px;
+        margin: 5% auto;
+    }
+    
+    .project-modal-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .project-modal-details h3 {
+        font-size: 1.2rem;
+        margin: 15px 0 8px;
+    }
+    
+    .tech-tag {
+        font-size: 0.8rem;
+        padding: 4px 10px;
     }
 }
