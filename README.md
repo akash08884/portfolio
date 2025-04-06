@@ -34,7 +34,7 @@ Is website ko GitHub Pages par deploy karne ke liye in steps ko follow karein:
 ## Live Website | 
 
 You can view the live website at
-[https://akashgaud0x0.github.io/portfolio/](https://akashgaud0x0.github.io/portfolio/)
+[https://akash08884.github.io/portfolio/](https://akash08884.github.io/portfolio/)
 
 
 ## Contact 
@@ -42,4 +42,4 @@ You can view the live website at
 For any inquiries, please reach out to me at:
 - Email: akashgaud0x0@gmail.com
 - LinkedIn: [linkedin.com/in/AkashGaud0x0](https://linkedin.com/in/AkashGaud0x0)
-- GitHub: [github.com/AkashGaud0x0](https://github.com/AkashGaud0x0)
+- GitHub: [github.com/akash08884](https://github.com/akash08884)
