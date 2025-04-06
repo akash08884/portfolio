@@ -134,7 +134,7 @@ function initializeCharts() {
         responsive: true,
         maintainAspectRatio: false,
         animation: {
-            duration: 1000,
+            duration: 800,
             easing: 'easeInOutQuart'
         },
         scales: {
@@ -175,6 +175,7 @@ function initializeCharts() {
         }
     };
 
+    // First chart (Bar Chart)
     if (barChartElement && !barChartElement.hasAttribute('data-chart-initialized')) {
         const barCtx = document.createElement('canvas');
         barChartElement.appendChild(barCtx);
@@ -183,23 +184,21 @@ function initializeCharts() {
         new Chart(barCtx, {
             type: 'bar',
             data: {
-                labels: ['Power BI', 'Excel', 'SQL', 'Python', 'Tableau'],
+                labels: ['Power BI', 'Excel', 'SQL', 'Python'],
                 datasets: [{
                     label: 'Data Analysis Tools',
-                    data: [90, 85, 80, 75, 70],
+                    data: [90, 85, 80, 75],
                     backgroundColor: [
                         'rgba(65, 88, 208, 0.7)',
                         'rgba(100, 88, 208, 0.7)',
                         'rgba(150, 88, 208, 0.7)',
-                        'rgba(200, 88, 208, 0.7)',
-                        'rgba(200, 130, 192, 0.7)'
+                        'rgba(200, 88, 208, 0.7)'
                     ],
                     borderColor: [
                         'rgba(65, 88, 208, 1)',
                         'rgba(100, 88, 208, 1)',
                         'rgba(150, 88, 208, 1)',
-                        'rgba(200, 88, 208, 1)',
-                        'rgba(200, 130, 192, 1)'
+                        'rgba(200, 88, 208, 1)'
                     ],
                     borderWidth: 1
                 }]
@@ -208,145 +207,152 @@ function initializeCharts() {
         });
     }
     
-    if (lineChartElement && !lineChartElement.hasAttribute('data-chart-initialized')) {
-        const lineCtx = document.createElement('canvas');
-        lineChartElement.appendChild(lineCtx);
-        lineChartElement.setAttribute('data-chart-initialized', 'true');
-        
-        new Chart(lineCtx, {
-            type: 'line',
-            data: {
-                labels: ['2019', '2020', '2021', '2022', '2023', '2024'],
-                datasets: [{
-                    label: 'Skill Growth',
-                    data: [30, 45, 60, 70, 85, 95],
-                    fill: false,
-                    borderColor: 'rgba(0, 147, 233, 1)',
-                    tension: 0.1,
-                    backgroundColor: 'rgba(0, 147, 233, 0.7)'
-                }]
-            },
-            options: chartOptions
-        });
-    }
+    // Second chart (Line Chart) - 2 seconds delay
+    setTimeout(() => {
+        if (lineChartElement && !lineChartElement.hasAttribute('data-chart-initialized')) {
+            const lineCtx = document.createElement('canvas');
+            lineChartElement.appendChild(lineCtx);
+            lineChartElement.setAttribute('data-chart-initialized', 'true');
+            
+            new Chart(lineCtx, {
+                type: 'line',
+                data: {
+                    labels: ['2019', '2020', '2021', '2022', '2023', '2024'],
+                    datasets: [{
+                        label: 'Skill Growth',
+                        data: [30, 45, 60, 70, 85, 95],
+                        fill: false,
+                        borderColor: 'rgba(0, 147, 233, 1)',
+                        tension: 0.1,
+                        backgroundColor: 'rgba(0, 147, 233, 0.7)'
+                    }]
+                },
+                options: chartOptions
+            });
+        }
+    }, 2000);
     
-    if (pieChartElement && !pieChartElement.hasAttribute('data-chart-initialized')) {
-        // Create pie chart
-        const pieCtx = document.createElement('canvas');
-        pieChartElement.appendChild(pieCtx);
-        pieChartElement.setAttribute('data-chart-initialized', 'true');
-        
-        new Chart(pieCtx, {
-            type: 'pie',
-            data: {
-                labels: ['Data Analysis', 'Data Visualization', 'Machine Learning', 'Statistical Analysis', 'Data Cleaning'],
-                datasets: [{
-                    data: [30, 25, 15, 20, 10],
-                    backgroundColor: [
-                        'rgba(142, 197, 252, 0.7)',
-                        'rgba(160, 197, 252, 0.7)',
-                        'rgba(180, 197, 252, 0.7)',
-                        'rgba(200, 197, 252, 0.7)',
-                        'rgba(224, 195, 252, 0.7)'
-                    ],
-                    borderColor: [
-                        'rgba(142, 197, 252, 1)',
-                        'rgba(160, 197, 252, 1)',
-                        'rgba(180, 197, 252, 1)',
-                        'rgba(200, 197, 252, 1)',
-                        'rgba(224, 195, 252, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'right',
-                        labels: {
-                            color: '#fff',
-                            font: {
-                                size: 10
+    // Third chart (Pie Chart) - 1 second after second chart
+    setTimeout(() => {
+        if (pieChartElement && !pieChartElement.hasAttribute('data-chart-initialized')) {
+            const pieCtx = document.createElement('canvas');
+            pieChartElement.appendChild(pieCtx);
+            pieChartElement.setAttribute('data-chart-initialized', 'true');
+            
+            new Chart(pieCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['Data Analysis', 'Data Visualization', 'Machine Learning', 'Statistical Analysis', 'Data Cleaning'],
+                    datasets: [{
+                        data: [30, 25, 15, 20, 10],
+                        backgroundColor: [
+                            'rgba(142, 197, 252, 0.7)',
+                            'rgba(160, 197, 252, 0.7)',
+                            'rgba(180, 197, 252, 0.7)',
+                            'rgba(200, 197, 252, 0.7)',
+                            'rgba(224, 195, 252, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(142, 197, 252, 1)',
+                            'rgba(160, 197, 252, 1)',
+                            'rgba(180, 197, 252, 1)',
+                            'rgba(200, 197, 252, 1)',
+                            'rgba(224, 195, 252, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                            labels: {
+                                color: '#fff',
+                                font: {
+                                    size: 10
+                                }
                             }
                         }
                     }
                 }
-            }
-        });
-    }
+            });
+        }
+    }, 3000);
     
-    if (scatterChartElement && !scatterChartElement.hasAttribute('data-chart-initialized')) {
-        // Create scatter chart
-        const scatterCtx = document.createElement('canvas');
-        scatterChartElement.appendChild(scatterCtx);
-        scatterChartElement.setAttribute('data-chart-initialized', 'true');
-        
-        new Chart(scatterCtx, {
-            type: 'scatter',
-            data: {
-                datasets: [{
-                    label: 'Project Complexity vs Time',
-                    data: [
-                        { x: 10, y: 20 },
-                        { x: 15, y: 30 },
-                        { x: 20, y: 10 },
-                        { x: 25, y: 50 },
-                        { x: 30, y: 40 },
-                        { x: 35, y: 60 },
-                        { x: 40, y: 35 },
-                        { x: 45, y: 70 },
-                        { x: 50, y: 55 }
-                    ],
-                    backgroundColor: 'rgba(251, 171, 126, 0.7)',
-                    borderColor: 'rgba(251, 171, 126, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Complexity',
-                            color: '#fff'
+    // Fourth chart (Scatter Chart) - 1 second after third chart
+    setTimeout(() => {
+        if (scatterChartElement && !scatterChartElement.hasAttribute('data-chart-initialized')) {
+            const scatterCtx = document.createElement('canvas');
+            scatterChartElement.appendChild(scatterCtx);
+            scatterChartElement.setAttribute('data-chart-initialized', 'true');
+            
+            new Chart(scatterCtx, {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: 'Project Complexity vs Time',
+                        data: [
+                            { x: 10, y: 20 },
+                            { x: 15, y: 30 },
+                            { x: 20, y: 10 },
+                            { x: 25, y: 50 },
+                            { x: 30, y: 40 },
+                            { x: 35, y: 60 },
+                            { x: 40, y: 35 },
+                            { x: 45, y: 70 },
+                            { x: 50, y: 55 }
+                        ],
+                        backgroundColor: 'rgba(251, 171, 126, 0.7)',
+                        borderColor: 'rgba(251, 171, 126, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Complexity',
+                                color: '#fff'
+                            },
+                            ticks: {
+                                color: '#fff'
+                            },
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            }
                         },
-                        ticks: {
-                            color: '#fff'
-                        },
-                        grid: {
-                            color: 'rgba(255, 255, 255, 0.1)'
+                        x: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Time (hours)',
+                                color: '#fff'
+                            },
+                            ticks: {
+                                color: '#fff'
+                            },
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            }
                         }
                     },
-                    x: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Time (hours)',
-                            color: '#fff'
-                        },
-                        ticks: {
-                            color: '#fff'
-                        },
-                        grid: {
-                            color: 'rgba(255, 255, 255, 0.1)'
-                        }
-                    }
-                },
-                plugins: {
-                    legend: {
-                        labels: {
-                            color: '#fff'
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#fff'
+                            }
                         }
                     }
                 }
-            }
-        });
-    }
+            });
+        }
+    }, 4000);
 }
 
 // Handle window resize
