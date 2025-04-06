@@ -1,0 +1,110 @@
+/* Pull to refresh animation styles */
+.pull-to-refresh-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    overflow: visible;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+.pull-hand {
+    position: absolute;
+    top: -100px; /* Initially hidden above the viewport */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 80px;
+    transition: transform 0.3s ease-out;
+    z-index: 10000;
+    filter: drop-shadow(0 0 5px rgba(0,0,0,0.3));
+}
+
+.pull-hand.grabbing {
+    transform: translateX(-50%) rotate(10deg);
+}
+
+.pull-hand.pulling {
+    animation: pulling 0.5s ease-in-out;
+}
+
+.pull-hand.releasing {
+    animation: releasing 0.5s ease-in-out;
+}
+
+.pull-indicator {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--primary-color);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.pull-indicator.visible {
+    opacity: 1;
+}
+
+@keyframes pulling {
+    0% {
+        top: -100px;
+        transform: translateX(-50%) rotate(0deg);
+    }
+    50% {
+        top: 10px;
+        transform: translateX(-50%) rotate(5deg);
+    }
+    100% {
+        top: 0;
+        transform: translateX(-50%) rotate(10deg);
+    }
+}
+
+@keyframes releasing {
+    0% {
+        top: 0;
+        transform: translateX(-50%) rotate(10deg);
+    }
+    50% {
+        top: -50px;
+        transform: translateX(-50%) rotate(5deg);
+    }
+    100% {
+        top: -100px;
+        transform: translateX(-50%) rotate(0deg);
+    }
+}
+
+@keyframes refreshing {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.refresh-spinner {
+    display: none;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: var(--primary-color);
+    animation: refreshing 1s linear infinite;
+}
+
+.refresh-spinner.visible {
+    display: block;
+}
